@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings
 
 class Config(BaseSettings):
     ENV: str = "development"
-    JWT_SECRET: str = "fastapi"
+    JWT_SECRET: str = "efwfwepfkwe32324kewfwefwe"
     JWT_ALGORITHM: str = "HS256"
     WRITER_DB_URL: str = "sqlite+aiosqlite:///temp.db"
     READER_DB_URL: str = "sqlite+aiosqlite:///temp.db"

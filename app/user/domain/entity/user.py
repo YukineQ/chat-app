@@ -2,9 +2,9 @@ from pydantic import BaseModel, Field, ConfigDict
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, composite
 
+from app.user.domain.vo.location import Location
 from core.db import Base
 from core.db.mixins import TimestampMixin
-from app.user.domain.vo.location import Location
 
 
 class User(Base, TimestampMixin):

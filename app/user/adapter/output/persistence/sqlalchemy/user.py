@@ -22,7 +22,7 @@ class UserSQLAlchemyRepo(UserRepo):
 
         query = query.limit(limit)
         result = await session.execute(query)
-        return result.scalar().all()
+        return result.scalars().all()
 
     async def get_user_by_email_or_nickname(
         self,
@@ -48,7 +48,10 @@ class UserSQLAlchemyRepo(UserRepo):
         return stmt.scalars().first()
 
     async def get_user_by_id(self, *, user_id: int) -> User | None:
-        return await self.user_repo.get_user_by_id(user_id=user_id)
+        stmt = await session.execute(
+            select(User).where(User.id == user_id)
+        )
+        return stmt.scalars().first()
 
     async def save(self, *, user: User) -> None:
         session.add(user)

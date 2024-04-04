@@ -6,6 +6,7 @@ from app.user.domain.entity.user import User, UserRead
 from app.user.domain.usecase.user import UserUseCase
 from app.user.domain.vo.location import Location
 from core.helpers.token import TokenHelper
+from core.db import Transactional
 
 
 class UserService(UserUseCase):
@@ -20,6 +21,7 @@ class UserService(UserUseCase):
     ) -> list[UserRead]:
         return await self.repository.get_users(limit=limit, prev=prev)
 
+    @Transactional()
     async def create_user(self, *, command: CreateUserCommand) -> None:
         if command.password1 != command.password2:
             raise Exception

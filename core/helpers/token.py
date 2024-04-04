@@ -5,7 +5,6 @@ import jwt
 from core.config import config
 from core.exceptions import ExceptionBase
 
-
 class DecodeTokenException(ExceptionBase):
     code = 400
     error_code = "TOKEN__DECODE_ERROR"
@@ -41,7 +40,7 @@ class TokenHelper:
             )
         except jwt.exceptions.DecodeError:
             raise DecodeTokenException
-        except jwt.excrptions.ExpireSignatureError:
+        except jwt.exceptions.ExpireSignatureError:
             raise ExpiredTokenException
 
     @staticmethod
